@@ -778,6 +778,156 @@ const questionBank: Question[] = [
     explanation:
       "Separe o pedido APÓS o pagamento, use o mapa para cada item, e bipar o pedido APÓS todo o material estar separado.",
   },
+  {
+    id: 26,
+    question:
+      "Para entrega via Lalamove no centro do Rio, qual é o valor mínimo de frete?",
+    options: [
+      "R$ 10,00",
+      "R$ 15,00",
+      "R$ 20,00",
+      "R$ 25,00",
+      "Sem valor mínimo",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "Para centro do Rio até 7km, o valor mínimo é R$ 15,00. Fica grátis para compras a partir de R$ 300,00.",
+  },
+  {
+    id: 27,
+    question:
+      "A partir de qual valor a entrega no centro do Rio fica grátis?",
+    options: [
+      "R$ 200,00",
+      "R$ 250,00",
+      "R$ 300,00",
+      "R$ 350,00",
+      "R$ 400,00",
+    ],
+    correctAnswer: 2,
+    explanation:
+      "Para compras a partir de R$ 300,00, a entrega no centro do Rio fica grátis (quando o frete calculado for até R$ 15,00).",
+  },
+  {
+    id: 28,
+    question:
+      "Para compras acima de R$ 300,00, o que deve ser feito antes de finalizar?",
+    options: [
+      "Aplicar desconto automático",
+      "Enviar print do pedido com frete calculado para aprovação",
+      "Cobrar taxa extra",
+      "Recusar a entrega",
+      "Nada especial",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "Para compras a partir de R$ 300,00, envie print do pedido já com custo de frete calculado para aprovação.",
+  },
+  {
+    id: 29,
+    question:
+      "Qual garantia é oferecida para toners de impressora?",
+    options: [
+      "30 dias",
+      "60 dias",
+      "90 dias após recebimento",
+      "120 dias",
+      "1 ano",
+    ],
+    correctAnswer: 2,
+    explanation:
+      "A garantia para toners é de 90 dias após o recebimento do produto.",
+  },
+  {
+    id: 30,
+    question:
+      "Para cotação de frete via Correios/Transportadoras no Bling, qual logística selecionar?",
+    options: [
+      "Logística própria",
+      "ENVIO POR MELHOR ENVIOS",
+      "Correios direto",
+      "Transportadora local",
+      "Qualquer opção",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "Em Logística, marque a opção 'ENVIO POR MELHOR ENVIOS' para obter cotações de frete.",
+  },
+  {
+    id: 31,
+    question:
+      "Qual é o prazo para postagem após identificação do pagamento?",
+    options: [
+      "No mesmo dia sempre",
+      "Até 24h úteis, podendo ser no mesmo dia se pago até 13h",
+      "48h úteis",
+      "72h úteis",
+      "1 semana",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "Após pagamento identificado até 13h, postamos em até 24h úteis, até no mesmo dia.",
+  },
+  {
+    id: 32,
+    question:
+      "Para toner colorido, quais documentos podem ser solicitados como comprovante?",
+    options: [
+      "Apenas nota fiscal",
+      "Danfe, pedido de loja virtual ou pedido balcão",
+      "Apenas recibo",
+      "Apenas cupom fiscal",
+      "Qualquer documento",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "Pode solicitar: Danfe (Nota Fiscal Eletrônica), pedido de loja virtual ou pedido balcão.",
+  },
+  {
+    id: 33,
+    question:
+      "Para desconto em múltiplas peças Boa Dica, qual é a regra?",
+    options: [
+      "Desconto livre",
+      "Não pode ultrapassar limite do sistema e precisa autorização",
+      "Máximo 10% sempre",
+      "Apenas para clientes VIP",
+      "Não é permitido desconto",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "Desconto para mais de uma peça não pode ultrapassar o próprio limite de sistema e precisa de autorização.",
+  },
+  {
+    id: 34,
+    question:
+      "Onde encontrar informações sobre envio no site Protoner?",
+    options: [
+      "www.protoner.com.br/frete",
+      "www.protoner.com.br/envio",
+      "www.protoner.com.br/entrega",
+      "www.protoner.com.br/correios",
+      "Não tem essa informação",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "As informações sobre envio estão disponíveis em www.protoner.com.br/envio.",
+  },
+  {
+    id: 35,
+    question:
+      "Para cotações de mais de 1 volume, onde deve ser feita?",
+    options: [
+      "Apenas no Bling",
+      "Diretamente no painel do Melhor Envios",
+      "Por telefone",
+      "Por WhatsApp",
+      "Não é possível",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "Cotações para compras de mais de 1 volume somente será feita diretamente no painel do melhor envios, inserindo todos os dados.",
+  },
 ];
 
 export default function App() {
