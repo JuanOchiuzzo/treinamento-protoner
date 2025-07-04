@@ -1,0 +1,20 @@
+NÃO POSSUI CADASTRO
+- Cadastrar Novo Cliente
+Pergunte se viu o preço em algum lugar ou como encontrou a nossa loja.
+
+ IMPORTANTE - Classificação do Cliente
+🟡 Cliente Boa Dica: APENAS se o cliente disser que veio do "Boa Dica" ou mencionar especificamente essa marca.
+
+🔵 Cliente Protoner: QUALQUER outra resposta (Google, indicação, redes sociais, etc.) que NÃO mencione o "Boa Dica".
+ Exemplo: Como cadastrar cliente e criar pedido no Bling direto do "FRENTE DE CAIXA"
+1. ABA CLIENTE: Cadastre apenas NOME e TELEFONE, para Orçamento simples.
+
+Para DANFE, adicione CPF/CNPJ e demais dados de forma completa e verificada no SINTEGRA ou SEFAZ.
+
+2. ABA PRODUTO: Use sempre "Pesquisa Avançada" para localizar produtos. Após selecionar não esqueça de definir o PREÇO e clicar em "INSERIR".
+
+3. MÚLTIPLOS PRODUTOS: Após inserir um produto, aparecerá uma pergunta. Clique "NÃO" para adicionar mais produtos ou "SIM" para finalizar e ser direcionado para aba "pagamento".
+
+4. ABA PAGAMENTO: Selecione a forma de pagamento e o TIPO DE VENDEDOR (Protoner ou BD centro). Depois clique em "Finalizar Venda".
+
+nserir produtos e passar os preços conforme a classificação do cliente BOA DICA OU PROTONER

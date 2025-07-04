@@ -1,0 +1,51 @@
+Verificar Forma de Pagamento BOA DICA
+
+Verifique qual é a forma de pagamento preferida do cliente para definir o valor de cada item.
+
+ Perguntas importantes:
+• Qual será a forma de pagamento?
+• À vista ou parcelado?
+• Cartão, PIX, dinheiro ou boleto?
+• Para pedido a partir de clonagem, veja se não tem desconto do pedido anterior definido, para não repetir desconto sem motivo.
+
+Forma de pagamento
+
+Dinheiro
+0%
+
+PIX
++5%
+
+Débito
++5%
+
+Crédito
++10%
+
+Boleto
+0%
+
+agora se for Entrega a porcentagem é 
+30% encima do valor do produto para clientes boa dica
+Ao final do pedido some o valor do frete
+
+
+COMO CALCULAR, A PORCENTAGEM É ENCIMA DO VALOR DE CADA PRODUTO E O VALOR DO FRETE É SOMADO DEPOIS a parte pel sistema do lalamove.
+NÃO É ACUMULÁVEL, SE O PEDIDO FOR ENTREGA E A PESSOA COMPROU NO PIX, CONTINUA APENAS O VALOR DE 30% encima do valor de cada produto
+
+Atenção Importante
+Instruções importantes para finalizar o atendimento corretamente.
+
+📦
+Separe o pedido após o pagamento
+
+🗺️
+Use o mapa para cada item
+
+📱
+Bipar o pedido após todo o material estar separado
+
+🛍️
+Use no máximo 2 sacolas. Ofereça uma caixa se for mais que isso
+
+

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "./components/ui/button";
+import ChatBot from "./components/ChatBot";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -1008,6 +1009,445 @@ export default function App() {
   const canGoBack = navigation.history.length > 0;
   const currentStep = screenSteps[navigation.currentScreen];
 
+  // Função para extrair conteúdo do aplicativo para o chatbot
+  // Função para carregar a base de conhecimento do arquivo JSON
+  const loadKnowledgeBase = async (): Promise<any> => {
+    try {
+      const response = await fetch('/dados/knowledge-base.json');
+      if (!response.ok) {
+        throw new Error('Erro ao carregar base de conhecimento');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Erro ao carregar knowledge base:', error);
+      return null;
+    }
+  };
+
+  // Função para converter JSON em texto estruturado
+  const formatKnowledgeBase = (kb: any): string => {
+    if (!kb || !kb.knowledge_base) {
+      return getAppContentFallback();
+    }
+
+    const data = kb.knowledge_base;
+    let content = '=== TREINAMENTO PROTONER - BASE DE CONHECIMENTO COMPLETA ===\n\n';
+
+    // Cadastro de Cliente
+    if (data.cadastro_cliente) {
+      content += '## CADASTRO DE CLIENTE\n\n';
+      
+      if (data.cadastro_cliente.verificacao) {
+        content += `### ${data.cadastro_cliente.verificacao.titulo}\n`;
+        content += `${data.cadastro_cliente.verificacao.descricao}\n`;
+        content += 'Procedimento:\n';
+        data.cadastro_cliente.verificacao.procedimento.forEach((step: string, index: number) => {
+          content += `${index + 1}. ${step}\n`;
+        });
+        content += '\n';
+      }
+
+      if (data.cadastro_cliente.possui_cadastro) {
+        content += `### ${data.cadastro_cliente.possui_cadastro.titulo}\n`;
+        data.cadastro_cliente.possui_cadastro.procedimento.forEach((step: string, index: number) => {
+          content += `${index + 1}. ${step}\n`;
+        });
+        
+        if (data.cadastro_cliente.possui_cadastro.identificacao_tipo) {
+          content += `\n#### ${data.cadastro_cliente.possui_cadastro.identificacao_tipo.titulo}\n`;
+          data.cadastro_cliente.possui_cadastro.identificacao_tipo.procedimento.forEach((step: string, index: number) => {
+            content += `${index + 1}. ${step}\n`;
+          });
+        }
+        content += '\n';
+      }
+
+      if (data.cadastro_cliente.nao_possui_cadastro) {
+        content += `### ${data.cadastro_cliente.nao_possui_cadastro.titulo}\n`;
+        data.cadastro_cliente.nao_possui_cadastro.procedimento.forEach((step: string) => {
+          content += `- ${step}\n`;
+        });
+        
+        if (data.cadastro_cliente.nao_possui_cadastro.cadastro_bling) {
+          content += `\n#### ${data.cadastro_cliente.nao_possui_cadastro.cadastro_bling.titulo}\n`;
+          data.cadastro_cliente.nao_possui_cadastro.cadastro_bling.procedimento.forEach((step: string, index: number) => {
+            content += `${index + 1}. ${step}\n`;
+          });
+        }
+        content += '\n';
+      }
+    }
+
+    // Boa Dica
+    if (data.boa_dica) {
+      content += '## BOA DICA - PROCEDIMENTOS\n\n';
+      
+      if (data.boa_dica.valor) {
+        content += `### ${data.boa_dica.valor.titulo}\n`;
+        content += `**Regra:** ${data.boa_dica.valor.regra}\n`;
+        content += `**Observação:** ${data.boa_dica.valor.observacao}\n\n`;
+      }
+
+      if (data.boa_dica.marca) {
+        content += `### ${data.boa_dica.marca.titulo}\n`;
+        data.boa_dica.marca.regras.forEach((regra: string) => {
+          content += `- ${regra}\n`;
+        });
+        content += '\n';
+      }
+
+      if (data.boa_dica.pagamento) {
+        content += `### ${data.boa_dica.pagamento.titulo}\n`;
+        Object.entries(data.boa_dica.pagamento.taxas).forEach(([forma, taxa]) => {
+          content += `- ${forma.charAt(0).toUpperCase() + forma.slice(1)}: ${taxa}\n`;
+        });
+        content += `**Observação:** ${data.boa_dica.pagamento.observacao}\n\n`;
+      }
+
+      // Envio Boa Dica
+      if (data.boa_dica.envio) {
+        content += '### FORMAS DE ENVIO - BOA DICA\n\n';
+        
+        if (data.boa_dica.envio.motoboy) {
+          content += `#### ${data.boa_dica.envio.motoboy.titulo}\n`;
+          data.boa_dica.envio.motoboy.procedimento.forEach((step: string) => {
+            content += `- ${step}\n`;
+          });
+          
+          content += '\n**Preços:**\n';
+          if (data.boa_dica.envio.motoboy.precos.ate_299) {
+            Object.entries(data.boa_dica.envio.motoboy.precos.ate_299).forEach(([local, preco]) => {
+              content += `- ${local.replace('_', ' ')}: ${preco}\n`;
+            });
+          }
+          content += `- Acima R$ 300: ${data.boa_dica.envio.motoboy.precos.acima_300}\n\n`;
+        }
+      }
+    }
+
+    // Protoner
+    if (data.protoner) {
+      content += '## PROTONER - PROCEDIMENTOS\n\n';
+      
+      if (data.protoner.valor) {
+        content += `### ${data.protoner.valor.titulo}\n`;
+        content += `**Regra:** ${data.protoner.valor.regra}\n`;
+        content += `**Atualização:** ${data.protoner.valor.atualizacao}\n\n`;
+      }
+
+      if (data.protoner.marca) {
+        content += `### ${data.protoner.marca.titulo}\n`;
+        content += `**Regra:** ${data.protoner.marca.regra}\n\n`;
+      }
+    }
+
+    // Dicas de Venda
+    if (data.dicas_venda) {
+      content += `## ${data.dicas_venda.titulo.toUpperCase()}\n\n`;
+      data.dicas_venda.dicas.forEach((dica: string) => {
+        content += `- ${dica}\n`;
+      });
+      
+      content += '\n**Perguntas Importantes:**\n';
+      data.dicas_venda.perguntas_importantes.forEach((pergunta: string) => {
+        content += `- ${pergunta}\n`;
+      });
+      
+      content += '\n**Finalização:**\n';
+      data.dicas_venda.finalizacao.forEach((item: string) => {
+        content += `- ${item}\n`;
+      });
+      content += '\n';
+    }
+
+    // Garantia de Toner
+    if (data.garantia_toner) {
+      content += `## ${data.garantia_toner.titulo.toUpperCase()}\n\n`;
+      content += `**Prazo:** ${data.garantia_toner.prazo}\n\n`;
+      
+      content += '**Comprovantes aceitos:**\n';
+      data.garantia_toner.comprovante.forEach((comp: string) => {
+        content += `- ${comp}\n`;
+      });
+      content += '\n';
+
+      if (data.garantia_toner.colorida) {
+        content += `### ${data.garantia_toner.colorida.titulo}\n\n`;
+        
+        if (data.garantia_toner.colorida.problemas_video) {
+          content += `#### ${data.garantia_toner.colorida.problemas_video.titulo}\n`;
+          content += `**Tipos:** ${data.garantia_toner.colorida.problemas_video.tipos.join(', ')}\n`;
+          content += `**Procedimento:** ${data.garantia_toner.colorida.problemas_video.procedimento}\n\n`;
+          
+          content += '**Não reconhece - Detalhes:**\n';
+          data.garantia_toner.colorida.problemas_video.nao_reconhece.forEach((detalhe: string) => {
+            content += `- ${detalhe}\n`;
+          });
+          content += `\n**Atenção:** ${data.garantia_toner.colorida.problemas_video.sem_chip}\n\n`;
+        }
+      }
+
+      if (data.garantia_toner.sem_garantia) {
+        content += `### ${data.garantia_toner.sem_garantia.titulo}\n`;
+        content += `- **Produto não nosso:** ${data.garantia_toner.sem_garantia.produto_nao_nosso}\n`;
+        content += `- **Prazo vencido:** ${data.garantia_toner.sem_garantia.prazo_vencido}\n\n`;
+      }
+
+      content += '**Atenções Importantes:**\n';
+      data.garantia_toner.atencoes_importantes.forEach((atencao: string) => {
+        content += `- ${atencao}\n`;
+      });
+      content += '\n';
+    }
+
+    // Faturamento
+    if (data.faturamento) {
+      content += `## ${data.faturamento.titulo.toUpperCase()}\n\n`;
+      
+      if (data.faturamento.sem_postagem) {
+        content += `### ${data.faturamento.sem_postagem.titulo}\n`;
+        data.faturamento.sem_postagem.procedimento.forEach((step: string) => {
+          content += `${step}\n`;
+        });
+        content += '\n';
+      }
+
+      if (data.faturamento.com_postagem) {
+        content += `### ${data.faturamento.com_postagem.titulo}\n`;
+        data.faturamento.com_postagem.procedimento.forEach((step: string) => {
+          content += `${step}\n`;
+        });
+        content += '\n';
+      }
+    }
+
+    content += '=== FIM DA BASE DE CONHECIMENTO ===\n';
+    return content;
+  };
+
+  // Função de fallback caso o JSON não carregue
+  const getAppContentFallback = (): string => {
+    return `
+    TREINAMENTO PROTONER - BASE DE CONHECIMENTO COMPLETA
+    
+    === IDENTIFICAÇÃO DE PRODUTOS ===
+    BOA DICA:
+    - Embalagem: Amarela com logo "Boa Dica"
+    - Política: Preço fixo, sem negociação
+    - Público: Clientes finais e pequenos revendedores
+    - Margem: Menor, mas volume maior
+    
+    PROTONER:
+    - Embalagem: Azul com logo "Protoner"
+    - Política: Permite desconto até 10% para clientes especiais
+    - Público: Revendedores e empresas
+    - Margem: Maior, foco em qualidade
+    
+    === POLÍTICAS DE PREÇO E DESCONTO ===
+    REGRAS GERAIS:
+    - Boa Dica: Preço tabelado, sem exceções
+    - Protoner: Desconto conforme volume e relacionamento
+    - Clientes especiais: Até 10% de desconto (consultar supervisor)
+    - Promoções: Seguir campanhas vigentes
+    
+    CRITÉRIOS PARA DESCONTO:
+    - Volume mensal alto (acima de 50 unidades)
+    - Cliente fidelizado (mais de 1 ano)
+    - Pedidos grandes (acima de R$ 1.000)
+    - Pagamento à vista (PIX)
+    
+    === FORMAS DE PAGAMENTO E TAXAS ===
+    PIX:
+    - Taxa: 0% (sem custo adicional)
+    - Processamento: Instantâneo
+    - Recomendação: Sempre oferecer como primeira opção
+    
+    CARTÃO DE CRÉDITO:
+    - Taxa: 3,5% sobre o valor total
+    - Parcelamento: Até 12x (consultar política)
+    - Verificação: Sempre confirmar limite disponível
+    
+    CARTÃO DE DÉBITO:
+    - Taxa: 2,5% sobre o valor total
+    - Processamento: Instantâneo
+    - Limite: Conforme saldo em conta
+    
+    BOLETO BANCÁRIO:
+    - Taxa: Conforme banco
+    - Prazo: 3 dias úteis para compensação
+    - Vencimento: Máximo 7 dias
+    
+    === FORMAS DE ENVIO DETALHADAS ===
+    MOTOBOY EXPRESS (LALAMOVE):
+    - Região: Apenas Rio de Janeiro
+    - Tempo: 1-3 horas
+    - Cálculo: Direto no app Lalamove
+    - Procedimento: Sempre confirmar endereço e telefone
+    
+    CORREIOS (PAC):
+    - Prazo: 8-12 dias úteis
+    - Custo: Mais econômico
+    - Rastreamento: Código fornecido
+    - Limite peso: 30kg por volume
+    
+    CORREIOS (SEDEX):
+    - Prazo: 2-5 dias úteis
+    - Custo: Mais caro que PAC
+    - Urgência: Para pedidos prioritários
+    - Seguro: Automático até R$ 100
+    
+    TRANSPORTADORAS:
+    - Prazo: 3-7 dias úteis
+    - Custo: Varia por região
+    - Volume: Ideal para pedidos grandes
+    - Entrega: Até o endereço (conferir acessibilidade)
+    
+    FRETE GRÁTIS:
+    - Condição: Pedidos acima de R$ 300
+    - Região: Centro do Rio de Janeiro
+    - Cálculo: Frete calculado deve ser <= R$ 15
+    - Automático: Sistema aplica automaticamente
+    
+    === GARANTIA DE TONERS - PROCEDIMENTOS COMPLETOS ===
+    PRAZO E CONDIÇÕES:
+    - Prazo: 90 dias corridos após recebimento
+    - Comprovante: DANFE, pedido loja virtual ou balcão
+    - Produto: Deve estar em condições originais
+    - Uso: Conforme especificações do fabricante
+    
+    PROBLEMAS QUE REQUEREM VÍDEO:
+    1. FAZ BARULHO:
+       - Solicitar vídeo mostrando o ruído
+       - Comparar com toner anterior funcionando
+       - Verificar se é ruído normal ou anormal
+    
+    2. VAZA TONER:
+       - Vídeo mostrando o vazamento
+       - Verificar se é durante uso ou manuseio
+       - Analisar se é defeito ou mau uso
+    
+    3. NÃO RECONHECE:
+       - Vídeo da impressora pedindo toner
+       - Mostrar que com toner anterior funciona
+       - Verificar se é problema de chip
+    
+    TONER SEM CHIP:
+    - Verificar se cliente comprou opção "sem chip"
+    - Orientar sobre necessidade do chip do toner anterior
+    - Explicar procedimento de transferência do chip
+    
+    MÁ IMPRESSÃO COLORIDA:
+    - Solicitar impressão do PDF de teste colorido
+    - Pedir página de status de suprimentos
+    - Se impressão muito ruim, solicitar amostra física
+    
+    IMPRESSORAS COM TONER E FOTOCONDUTOR:
+    - Solicitar fotos nítidas dos rolos de toner
+    - Solicitar fotos do rolo fotocondutor
+    - Analisar desgaste e compatibilidade
+    
+    CASOS SEM GARANTIA:
+    - Produto não é nosso (verificar origem)
+    - Prazo vencido (mais de 90 dias)
+    - Mau uso ou danos físicos
+    - Modificações no produto
+    
+    === USO DO SISTEMA BLING ===
+    ACESSO E LOGIN:
+    - Usar credenciais fornecidas pela empresa
+    - Sempre fazer logout ao final do expediente
+    - Não compartilhar senhas
+    
+    CONSULTA DE PRODUTOS:
+    - Buscar por código ou descrição
+    - Verificar estoque em tempo real
+    - Confirmar preços atualizados
+    - Checar compatibilidade
+    
+    CRIAÇÃO DE PEDIDOS:
+    - Sempre confirmar dados do cliente
+    - Verificar endereço de entrega
+    - Calcular frete pelo Melhor Envios
+    - Aplicar descontos conforme política
+    
+    MELHOR ENVIOS INTEGRADO:
+    - Cálculo automático de frete
+    - Múltiplas opções de transportadoras
+    - Rastreamento integrado
+    - Etiquetas geradas automaticamente
+    
+    OBSERVAÇÕES IMPORTANTES:
+    - Para múltiplos volumes: especificar na observação
+    - Produtos frágeis: marcar como tal
+    - Endereços comerciais: confirmar horário funcionamento
+    - Prazo de postagem: até 2 dias úteis
+    
+    === PROCEDIMENTOS DE ATENDIMENTO ===
+    RECEPÇÃO DO CLIENTE:
+    - Cumprimento cordial e profissional
+    - Identificar necessidade (Boa Dica ou Protoner)
+    - Confirmar dados de contato
+    - Registrar interação no sistema
+    
+    IDENTIFICAÇÃO DE NECESSIDADES:
+    - Modelo da impressora
+    - Tipo de uso (residencial/comercial)
+    - Volume de impressão mensal
+    - Urgência da entrega
+    
+    APRESENTAÇÃO DE PRODUTOS:
+    - Explicar diferenças entre linhas
+    - Mostrar vantagens de cada opção
+    - Confirmar compatibilidade
+    - Informar sobre garantia
+    
+    FECHAMENTO DE VENDAS:
+    - Confirmar todos os dados
+    - Explicar formas de pagamento
+    - Calcular frete
+    - Informar prazo de entrega
+    
+    === FATURAMENTO E DOCUMENTAÇÃO ===
+    DADOS PARA DANFE:
+    - Razão social completa
+    - CNPJ ou CPF
+    - Endereço completo
+    - Inscrição estadual (se houver)
+    
+    VERIFICAÇÃO ANTES DE FINALIZAR:
+    - Conferir todos os dados
+    - Verificar cálculo de impostos
+    - Confirmar produtos e quantidades
+    - Validar endereço de entrega
+    
+    CLASSIFICAÇÃO DE CLIENTES:
+    - Pessoa física: CPF
+    - Pessoa jurídica: CNPJ
+    - Revendedor: Cadastro especial
+    - Cliente final: Cadastro padrão
+    
+    === SEPARAÇÃO E EXPEDIÇÃO ===
+    PROCEDIMENTOS PÓS-VENDA:
+    - Pagamento identificado até 13h: postagem em até 24h úteis
+    - Usar mapa de localização para cada item
+    - Bipar todos os produtos antes da expedição
+    - Embalar adequadamente (máximo 2 sacolas)
+    
+    === FIM DA BASE DE CONHECIMENTO ===
+    `;
+  };
+
+  // Função principal para obter conteúdo (agora assíncrona)
+  const getAppContent = async (): Promise<string> => {
+    const knowledgeBase = await loadKnowledgeBase();
+    return formatKnowledgeBase(knowledgeBase);
+  };
+
+  // Função síncrona para compatibilidade
+  const getAppContentSync = (): string => {
+    return getAppContentFallback();
+  };
+
   return (
     <div
       className="min-h-screen"
@@ -1212,6 +1652,9 @@ export default function App() {
           <RotateCcw className="w-5 h-5" />
         </Button>
       </div>
+
+      {/* ChatBot */}
+      <ChatBot appContent={getAppContentSync()} />
    </div>
  );
 };

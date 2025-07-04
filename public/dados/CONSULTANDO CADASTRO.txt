@@ -1,0 +1,12 @@
+Consulte o Cadastro
+
+Consulte os dados do cliente no sistema para verificar as informações de cadastro e histórico.
+
+Exemplo: Como visualizar histórico de compras do cliente
+1. Clique no pedido do cliente na lista
+
+2. Clique no ícone (i) para visualizar informações detalhadas dos preços de pedidos anteriores
+
+3. Analise o histórico de compras e valores anteriores
+
+4. Use essas informações para manter consistência nos preços
