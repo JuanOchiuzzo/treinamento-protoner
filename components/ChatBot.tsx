@@ -199,7 +199,7 @@ RESPOSTA (seja útil, natural e completa, baseando-se principalmente na base de 
       }
       
       if (message.includes('preço') || message.includes('valor') || message.includes('custo') || message.includes('tabela')) {
-        return 'Procedimento de preços: consulte sempre a tabela atualizada no sistema. Para descontos especiais, verifique a política de vendas. Clientes com volume alto têm condições diferenciadas - consulte seu supervisor.';
+        return 'Procedimento de preços: consulte sempre a tabela atualizada no sistema. Para descontos especiais, verifique a política de vendas. Clientes com volume alto têm condições diferenciadas - consulte o Orlando.';
       }
       
       if (message.includes('frete') || message.includes('entrega') || message.includes('envio') || message.includes('calculadora')) {
@@ -214,7 +214,7 @@ RESPOSTA (seja útil, natural e completa, baseando-se principalmente na base de 
         return 'Como usar o Bling: acesse com seu login, consulte estoque em tempo real, registre todos os pedidos no sistema, atualize status de entrega. Sempre sincronize dados ao final do dia.';
       }
       
-      return 'Desculpe, ocorreu um erro ao processar sua pergunta. Tente novamente em alguns instantes ou consulte seu supervisor para dúvidas específicas.';
+      return 'Desculpe, ocorreu um erro ao processar sua pergunta. Tente novamente em alguns instantes ou consulte o Orlando para dúvidas específicas.';
       
     } finally {
       setIsLoading(false);
@@ -274,9 +274,14 @@ RESPOSTA (seja útil, natural e completa, baseando-se principalmente na base de 
               <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
                 <Bot className="w-5 h-5 text-white" />
               </div>
-              <DialogTitle className="text-white font-semibold">
-                Assistente Protoner
-              </DialogTitle>
+              <div className="flex items-center gap-2">
+                <DialogTitle className="text-white font-semibold">
+                  Assistente Protoner
+                </DialogTitle>
+                <span className="bg-orange-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                  BETA
+                </span>
+              </div>
             </div>
           </DialogHeader>
 
@@ -360,6 +365,9 @@ RESPOSTA (seja útil, natural e completa, baseando-se principalmente na base de 
                 <Send className="w-4 h-4" />
               </Button>
             </div>
+            <p className="text-xs text-gray-500 mt-2 text-center">
+              A IA pode conter erros, sempre consulte o Orlando em caso de dúvidas
+            </p>
           </div>
         </DialogContent>
       </Dialog>
