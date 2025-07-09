@@ -188,6 +188,15 @@ const TonerPretoScreen: React.FC<{
                 </ul>
                 <p className="text-sm mt-3 font-semibold text-blue-800">Garantia: 90 dias após recebimento do produto</p>
               </div>
+              <div className="bg-red-100 border border-red-200 p-4 rounded-xl mt-4">
+                <h4 className="font-semibold mb-2 text-red-800 flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5" />
+                  Atenção
+                </h4>
+                <p className="text-red-700 text-sm">
+                  Peça foto do produto e dos códigos das etiquetas que estão no produto, veja se confere com o comprovante de compra, e se for nosso prossiga o atendimento, senão for, me informe antes de prosseguir.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -1751,9 +1760,19 @@ const SuporteTonerGarantiaScreen: React.FC<{
         </h1>
       </div>
       <div className="p-10">
-        <p className="text-center text-gray-600 mb-12 text-lg leading-relaxed">
-          Selecione o tipo de toner para informações específicas de garantia
-        </p>
+        <div className="text-center text-gray-600 mb-12 text-lg leading-relaxed">
+          <p className="font-bold">Envie "MSG PADRÃO WHATSAPP" e siga o atendimento selecionando os botões abaixo conforme o item do cliente...</p>
+          <blockquote className="mt-4 p-4 bg-gray-100 border-l-4 border-gray-300 text-left text-sm italic">
+            <p className="font-bold not-italic">EXEMPLO:</p>
+            <p>Olá! Agradecemos o seu contato.</p>
+            <br />
+            <p>Vimos que você está com um problema em seu (item com defeito) e sentimos muito por isso. Pode ficar tranquilo(a), pois vamos te ajudar a resolver essa situação o mais rápido possível.</p>
+            <br />
+            <p>Para que possamos identificar a causa do defeito e te dar o suporte correto, pedimos que siga os procedimentos que vamos te passar, por favor.</p>
+            <br />
+            <p>Qualquer dificuldade durante o processo, basta nos responder. Estamos à sua disposição!</p>
+          </blockquote>
+        </div>
 
         <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
           {/* Botão Toner Colorido */}
@@ -4213,6 +4232,15 @@ const TonerColoridoScreen: React.FC<{
                   <li>• Pedido balcão</li>
                 </ul>
                 <p className="text-sm mt-3 font-semibold text-blue-800">Garantia: 90 dias após recebimento do produto</p>
+              </div>
+              <div className="bg-red-100 border border-red-200 p-4 rounded-xl mt-4">
+                <h4 className="font-semibold mb-2 text-red-800 flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5" />
+                  Atenção
+                </h4>
+                <p className="text-red-700 text-sm">
+                  Peça foto do produto e dos códigos das etiquetas que estão no produto, veja se confere com o comprovante de compra, e se for nosso prossiga o atendimento, senão for, me informe antes de prosseguir.
+                </p>
               </div>
             </div>
           </div>
