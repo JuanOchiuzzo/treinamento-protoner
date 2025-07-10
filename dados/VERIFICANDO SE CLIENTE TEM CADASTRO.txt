@@ -1,0 +1,11 @@
+primeiro atendimento balcão ou whatsapp
+
+Veja se tem cadastro consultando o nome, ou número de telefone fixo ou móvel.
+
+Exemplo: Como pesquisar cadastro pelo número de telefone no Bling
+1. Acesse Pedidos de Venda no Bling
+
+2. Clique em "Adicionar Filtros" em busca customizada e escolha a opção "Telefone/Celular"
+
+3. Digite o número do celular para buscar o cliente
+

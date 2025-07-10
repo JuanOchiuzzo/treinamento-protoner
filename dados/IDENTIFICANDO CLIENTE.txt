@@ -1,0 +1,10 @@
+Identifique se o cliente é protoner ou boa dica pra poder passar os preços corretos.
+
+ Exemplo: Como identificar se o cliente é Protoner ou Boa Dica
+1. Consulte o histórico de compras do cliente conforme mostrado anteriormente
+
+2. Verifique a opção "Vendedor" no pedido para identificar o tipo de cliente
+
+3. Se aparecer "Protoner" no campo vendedor = cliente Protoner
+
+4. Se aparecer "Bd centro" no campo vendedor = cliente Boa Dica

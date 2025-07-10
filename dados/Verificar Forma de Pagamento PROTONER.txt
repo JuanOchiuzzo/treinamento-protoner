@@ -1,0 +1,23 @@
+Verificar Forma de Pagamento PROTONER
+
+Verifique qual é a forma de pagamento preferida do cliente para definir o valor de cada item.
+Perguntas importantes:
+• Qual será a forma de pagamento?
+• À vista ou parcelado?
+• Cartão, PIX, dinheiro ou boleto?
+• Para pedido a partir de clonagem, veja se não tem desconto do pedido anterior definido, para não repetir desconto sem motivo.
+
+Atenção Importante
+Instruções importantes para finalizar o atendimento corretamente.
+
+📦
+Separe o pedido após o pagamento
+
+🗺️
+Use o mapa para cada item
+
+📱
+Bipar o pedido após todo o material estar separado
+
+🛍️
+Use no máximo 2 sacolas. Ofereça uma caixa se for mais que isso

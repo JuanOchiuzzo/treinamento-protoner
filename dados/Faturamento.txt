@@ -1,0 +1,64 @@
+Faturamento
+- Pedidos sem Postagem
+Gerar Nota Fiscal
+Escolha o pedido a ser emitido, clique 3 pontinhos, clique "Gerar nota fiscal".
+
+Veja senão há dados para inserir em "Informações complementares"
+
+Em seguida clique em "Salvar".
+
+2
+Informar sobre Frete
+1
+"Transportador/Volumes" - "Transporte" - "Não haverá transporte".
+
+2
+Frete por conta - Opção 9 - Sem ocorrência de transporte.
+
+3
+Para a emissão desta danfe, clique em "Enviar nota fiscal"
+
+OBSERVAÇÃO:
+
+Para impressão em 2 vias clique nos 3 pontinhos "IMPRIMIR DANFE", uma o cliente assina e a gente guarda e a outra via fica com o cliente.
+
+- Pedidos com Postagem
+1. Gerar Nota Fiscal
+Escolha o pedido a ser emitido, clique 3 pontinhos, clique "Gerar nota fiscal".
+
+Veja senão há dados para inserir em "Informações complementares"
+
+Em seguida clique em "Salvar".
+
+2. Cotar Frete dentro da Nota Fiscal
+1
+Role o mouse para baixo até localizar a seção de "Transportador/Volumes", "Transporte", marque a opção "Transporte com logística cadastrada".
+
+2
+Em Logística marque a opção "ENVIO POR MELHOR ENVIOS".
+
+3
+Ao lado em "Frete por conta", marque a opção "1-Contratação do frete por conta do destinatário (FOB)".
+
+4
+Em "Objetos de postagem", clicar no símbolo do caminhão, e em seguida insira o valor total de produtos em "Valor declarado (R$)".
+
+5
+Clicar em "OBTER COTAÇÃO", escolha o frete entendendo melhor preço, menor prazo disponível e viabilidade de envio.
+
+OBSERVAÇÃO: O preço pode variar até 10% que não terá diferença de um para o outro.
+
+6
+Para a emissão desta danfe, clique em "Enviar nota fiscal" após ter salvo.
+
+3. Se houver mais de 1 volume ou cotação manual no "MELHOR ENVIOS"
+OBSERVAÇÃO: Etiqueta deverá ser emitida com o uso dos dados desta danfe.
+
+1
+Coloque o nome da transportadora de forma manual.
+
+2
+Informe sobre frete - "Transportador/Volumes" - "Transporte" - "Inserir transportadora manualmente" - colocar nome da transportadora.
+
+3
+Frete por conta - Opção 1 - Contratação do frete por conta do destinatário (FOB).
